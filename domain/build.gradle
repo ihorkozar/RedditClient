@@ -1,0 +1,26 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
+    implementation "androidx.room:room-runtime:2.2.5"
+    annotationProcessor "androidx.room:room-compiler:2.2.5"
+
+    // ядро библиотеки
+    implementation 'com.github.stephanenicolas.toothpick:toothpick-runtime:3.1.0'
+    // плюшки для Android
+    implementation 'com.github.stephanenicolas.toothpick:smoothie-androidx:3.1.0'
+    // процессор аннотаций для генерации кода
+    annotationProcessor 'com.github.stephanenicolas.toothpick:toothpick-compiler:3.1.0'
+
+}
+
+
+sourceCompatibility = "8"
+targetCompatibility = "8"
