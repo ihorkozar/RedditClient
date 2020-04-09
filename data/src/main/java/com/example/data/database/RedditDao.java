@@ -7,7 +7,6 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.example.domain.model.Children;
-import com.example.domain.model.Post;
 
 import java.util.List;
 
@@ -22,5 +21,4 @@ public interface RedditDao {
 
     @Query("select * from children order by created_utc desc")
     DataSource.Factory<Integer, Children> getChildrenPaged();
-
 }

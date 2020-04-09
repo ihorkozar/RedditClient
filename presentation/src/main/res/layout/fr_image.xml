@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_margin="10dp"
-            bind:ImageUrl="@{image.url}" />
+            bind:FullImageUrl="@{image.url}" />
 
         <Button
             android:id="@+id/image_save"

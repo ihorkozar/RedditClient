@@ -42,7 +42,6 @@ public class Post implements Serializable {
     @SerializedName("sourceUrl")
     private String sourceUrl;
 
-
     public String getId() {
         return id;
     }

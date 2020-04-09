@@ -30,7 +30,10 @@ public class PostsViewModel extends ViewModel {
     @Inject
     PostService postServise;
 
-    private SwipeRefreshLayout.OnRefreshListener onRefreshListener = () -> updatePosts();
+    private SwipeRefreshLayout.OnRefreshListener onRefreshListener = () -> {
+        updatePosts();
+    };
+    //private SwipeRefreshLayout.OnRefreshListener onRefreshListener = () -> updatePosts();
 
     @Inject
     public PostsViewModel() {

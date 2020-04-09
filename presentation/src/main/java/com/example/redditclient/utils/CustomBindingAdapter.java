@@ -23,13 +23,29 @@ public class CustomBindingAdapter {
                 .into(imageView);
     }
 
+    @BindingAdapter("bind:FullImageUrl")
+    public static void loadFullImage(ImageView imageView, String urlImage) {
+        Glide.with(imageView.getContext())
+                .load(urlImage)
+                .into(imageView);
+    }
+
+    /*@BindingAdapter({"bind:data", "bind:clickHandler"})
+    public static void configureRecyclerView(RecyclerView recyclerView,
+                                             RecyclerViewViewModel viewModel,
+                                             PagedList<Children> children,
+                                             PostsAdapter.OnItemClickListener listener) {
+        viewModel.setupRecyclerView(recyclerView, children, listener);
+    }*/
+
     @BindingAdapter({"bind:data", "bind:clickHandler"})
     public static void configureRecyclerView(RecyclerView recyclerView,
                                              PagedList<Children> children,
                                              PostsAdapter.OnItemClickListener listener) {
         PostsAdapter adapter = new PostsAdapter(listener);
         adapter.submitList(children);
-        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(recyclerView.getContext());
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }
 

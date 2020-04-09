@@ -32,7 +32,9 @@ public class ImageSaver extends AsyncTask<String, Void, String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return strings[0];
+    }
+
+    protected void onPostExecute(String image) {
     }
 }

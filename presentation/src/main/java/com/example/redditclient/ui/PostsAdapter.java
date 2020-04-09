@@ -14,6 +14,8 @@ import com.example.redditclient.databinding.PostBinding;
 
 public class PostsAdapter extends PagedListAdapter<Children, PostsHolder> {
 
+    private final OnItemClickListener onItemClickListener;
+
     private static final DiffUtil.ItemCallback<Children> CALLBACK = new DiffUtil.ItemCallback<Children>() {
         @Override
         public boolean areItemsTheSame(Children oldItem, Children newItem) {
@@ -26,7 +28,6 @@ public class PostsAdapter extends PagedListAdapter<Children, PostsHolder> {
             return oldItem.equals(newItem);
         }
     };
-    private final OnItemClickListener onItemClickListener;
 
     @NonNull
     @Override
@@ -36,17 +37,17 @@ public class PostsAdapter extends PagedListAdapter<Children, PostsHolder> {
         return new PostsHolder(postBinding);
     }
 
-    public PostsAdapter(OnItemClickListener onItemClickListener) {
-        super(CALLBACK);
-        this.onItemClickListener = onItemClickListener;
-    }
-
     @Override
     public void onBindViewHolder(@NonNull PostsHolder holder, int position) {
         Children children = getItem(position);
         if (children != null){
             holder.bind(children.getPost(), onItemClickListener);
         }
+    }
+
+    public PostsAdapter(OnItemClickListener onItemClickListener) {
+        super(CALLBACK);
+        this.onItemClickListener = onItemClickListener;
     }
 
     public interface OnItemClickListener {
