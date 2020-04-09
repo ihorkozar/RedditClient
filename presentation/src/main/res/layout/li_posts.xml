@@ -5,12 +5,17 @@
     <data class="PostBinding">
         <variable name="post"
             type="com.example.redditclient.ui.PostsListItemViewModel"/>
+
+        <variable
+            name="onItemClickListener"
+            type="com.example.redditclient.ui.PostsAdapter.OnItemClickListener" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="8dp"
+        android:onClick="@{()->onItemClickListener.onItemClick(post.imageUrl)}">
 
         <ImageView
             android:id="@+id/image"
@@ -33,23 +38,34 @@
             android:textColor="@color/colorAccent"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv_username"
-            android:text="@{post.numberOfComments}"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/tv_name"
-            android:layout_alignStart="@id/tv_name"
-            android:layout_below="@id/tv_name" />
+            android:layout_below="@+id/tv_name"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/image"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_published"
-            android:text="@{post.publishedOn}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/tv_username"
-            android:layout_alignStart="@id/tv_username"
-            android:layout_below="@id/tv_username" />
+            <TextView
+                android:id="@+id/tv_published"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{post.publishedOn}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/separator" />
+
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{post.numberOfComments}" />
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"

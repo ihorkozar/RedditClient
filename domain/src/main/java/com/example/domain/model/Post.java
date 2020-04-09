@@ -1,17 +1,19 @@
 package com.example.domain.model;
 
-import java.io.Serializable;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 
 @Entity
 public class Post implements Serializable {
 
-    @PrimaryKey
     @NonNull
+    @PrimaryKey()
     @ColumnInfo(name = "id")
     @SerializedName("id")
     private String id;

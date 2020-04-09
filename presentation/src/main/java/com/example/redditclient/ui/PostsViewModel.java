@@ -7,15 +7,9 @@ import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.data.api.RedditApi;
 import com.example.data.database.RedditDao;
-import com.example.data.repository.PostDataBaseRepository;
 import com.example.domain.model.Children;
-import com.example.domain.model.Post;
-import com.example.domain.model.PostResponse;
 import com.example.domain.service.PostService;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -28,9 +22,7 @@ public class PostsViewModel extends ViewModel {
     protected MutableLiveData<Boolean> isErrorVisible = new MutableLiveData<>();
     protected MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
     protected LiveData<PagedList<Children>> children;
-
-    @Inject
-    PostDataBaseRepository postDataBaseRepository;
+    protected PostsAdapter.OnItemClickListener onItemClickListener;
 
     @Inject
     RedditDao redditDao;
@@ -60,7 +52,6 @@ public class PostsViewModel extends ViewModel {
                             boolean value = children.getValue()==null || children.getValue().size()==0;
                             isErrorVisible.postValue(value);
                         });
-        postDataBaseRepository.getChildren();
     }
 
     @Override
@@ -79,7 +70,7 @@ public class PostsViewModel extends ViewModel {
     }
 
     public LiveData<PagedList<Children>> getChildren() {
-        return children;//почему-то возвращает size=1
+        return children;
     }
 
     public MutableLiveData<Boolean> getIsLoading() {
@@ -88,6 +79,14 @@ public class PostsViewModel extends ViewModel {
 
     public MutableLiveData<Boolean> getIsErrorVisible() {
         return isErrorVisible;
+    }
+
+    public PostsAdapter.OnItemClickListener getOnItemClickListener() {
+        return onItemClickListener;
+    }
+
+    public void setOnItemClickListener(PostsAdapter.OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
     public void onAttach() {

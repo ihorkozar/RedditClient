@@ -9,14 +9,13 @@ import androidx.room.PrimaryKey;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 public class Children implements Serializable {
 
     @NonNull
-    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "childrenId")
+    @PrimaryKey(autoGenerate = true)
     private int childrenId;
 
     @ColumnInfo(name = "kind")
@@ -26,6 +25,10 @@ public class Children implements Serializable {
     @Embedded
     @SerializedName("data")
     private Post post;
+
+    public int getChildrenId() {
+        return childrenId;
+    }
 
     public String getKind() {
         return kind;
@@ -41,10 +44,6 @@ public class Children implements Serializable {
 
     public void setPost(Post post) {
         this.post = post;
-    }
-
-    public int getChildrenId() {
-        return childrenId;
     }
 
     public void setChildrenId(int childrenId) {

@@ -11,7 +11,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.domain.model.Children;
-import com.example.domain.model.Post;
 import com.example.redditclient.ui.PostsAdapter;
 
 public class CustomBindingAdapter {
@@ -24,10 +23,11 @@ public class CustomBindingAdapter {
                 .into(imageView);
     }
 
-    @BindingAdapter({"bind:data"})
+    @BindingAdapter({"bind:data", "bind:clickHandler"})
     public static void configureRecyclerView(RecyclerView recyclerView,
-                                             PagedList<Children> children){
-        PostsAdapter adapter = new PostsAdapter();
+                                             PagedList<Children> children,
+                                             PostsAdapter.OnItemClickListener listener) {
+        PostsAdapter adapter = new PostsAdapter(listener);
         adapter.submitList(children);
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         recyclerView.setAdapter(adapter);

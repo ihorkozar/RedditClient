@@ -2,7 +2,6 @@ package com.example.redditclient.ui;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.domain.model.Children;
 import com.example.domain.model.Post;
 import com.example.redditclient.databinding.PostBinding;
 
@@ -15,8 +14,9 @@ public class PostsHolder extends RecyclerView.ViewHolder {
         postBinding = binding;
     }
 
-    public void bind(Post item) {
+    public void bind(Post item, PostsAdapter.OnItemClickListener onItemClickListener) {
         postBinding.setPost(new PostsListItemViewModel(item));
+        postBinding.setOnItemClickListener(onItemClickListener);
         postBinding.executePendingBindings();
     }
 }

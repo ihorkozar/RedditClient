@@ -6,19 +6,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-
-import com.example.data.database.RedditDao;
-import com.example.domain.model.Children;
-import com.example.redditclient.AppDelegate;
-import com.example.redditclient.common.SingleFragmentActivity;
-import com.example.redditclient.databinding.PostsBinding;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import java.util.List;
+import com.example.redditclient.AppDelegate;
+import com.example.redditclient.databinding.PostsBinding;
+import com.example.redditclient.ui.image.ImageActivity;
+import com.example.redditclient.ui.image.ImageFragment;
 
 import javax.inject.Inject;
 
@@ -29,6 +25,14 @@ public class PostsFragment extends Fragment {
     @Inject
     PostsViewModel postsViewModel;
 
+    private PostsAdapter.OnItemClickListener onItemClickListener = url -> {
+        Intent intent = new Intent(getActivity(), ImageActivity.class);
+        Bundle args = new Bundle();
+        args.putString(ImageFragment.FRAGMENT_KEY, url);
+        intent.putExtra(ImageActivity.ACTIVITY_KEY, args);
+        startActivity(intent);
+    };
+
     public static PostsFragment newInstance(){
         return new PostsFragment();
     }
@@ -37,6 +41,7 @@ public class PostsFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         Toothpick.inject(this, AppDelegate.getAppScope());
+        postsViewModel.setOnItemClickListener(onItemClickListener);
         postsViewModel.onAttach();
     }
 
