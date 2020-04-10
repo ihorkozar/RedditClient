@@ -35,7 +35,7 @@ public class CustomBindingAdapter {
                                              RecyclerViewViewModel viewModel,
                                              PagedList<Children> children,
                                              PostsAdapter.OnItemClickListener listener) {
-        viewModel.setupRecyclerView(recyclerView, children, listener);
+        viewModel.setupRecyclerView(recyclerView, listener, children);
     }*/
 
     @BindingAdapter({"bind:data", "bind:clickHandler"})

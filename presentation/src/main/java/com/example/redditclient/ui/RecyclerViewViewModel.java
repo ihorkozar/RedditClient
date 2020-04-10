@@ -12,6 +12,7 @@ import com.example.domain.model.Children;
 
 public abstract class RecyclerViewViewModel extends ViewModel {
     RecyclerView.LayoutManager layoutManager;
+    PostsAdapter adapter;
     private Parcelable savedLayoutManagerState;
 
     public RecyclerViewViewModel(@Nullable State savedInstanceState) {
@@ -27,14 +28,16 @@ public abstract class RecyclerViewViewModel extends ViewModel {
         return new RecyclerViewViewModelState(this);
     }
 
-    public final void setupRecyclerView(RecyclerView recyclerView, PagedList<Children> children, PostsAdapter.OnItemClickListener listener) {
+    public final void setupRecyclerView(RecyclerView recyclerView,
+                                        PostsAdapter.OnItemClickListener listener,
+                                        PagedList<Children> children) {
+        adapter = new PostsAdapter(listener);
+        adapter.submitList(children);
         layoutManager = new LinearLayoutManager(recyclerView.getContext());
         if (savedLayoutManagerState != null) {
             layoutManager.onRestoreInstanceState(savedLayoutManagerState);
             savedLayoutManagerState = null;
         }
-        PostsAdapter adapter = new PostsAdapter(listener);
-        adapter.submitList(children);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }
