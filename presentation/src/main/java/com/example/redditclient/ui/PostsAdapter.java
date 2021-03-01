@@ -33,14 +33,14 @@ public class PostsAdapter extends PagedListAdapter<Children, PostsHolder> {
     @Override
     public PostsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        PostBinding postBinding = PostBinding.inflate(inflater,parent,false);
+        PostBinding postBinding = PostBinding.inflate(inflater, parent, false);
         return new PostsHolder(postBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PostsHolder holder, int position) {
         Children children = getItem(position);
-        if (children != null){
+        if (children != null) {
             holder.bind(children.getPost(), onItemClickListener);
         }
     }

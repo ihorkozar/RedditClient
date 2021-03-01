@@ -33,7 +33,7 @@ public class PostsFragment extends Fragment {
         startActivity(intent);
     };
 
-    public static PostsFragment newInstance(){
+    public static PostsFragment newInstance() {
         return new PostsFragment();
     }
 
@@ -48,7 +48,7 @@ public class PostsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        PostsBinding postsBinding = PostsBinding.inflate(inflater,container,false);
+        PostsBinding postsBinding = PostsBinding.inflate(inflater, container, false);
         postsBinding.setViewModel(postsViewModel);
         postsBinding.setLifecycleOwner(this);
         return postsBinding.getRoot();

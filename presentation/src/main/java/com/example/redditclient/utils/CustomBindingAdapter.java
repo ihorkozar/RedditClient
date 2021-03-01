@@ -16,7 +16,7 @@ import com.example.redditclient.ui.PostsAdapter;
 public class CustomBindingAdapter {
 
     @BindingAdapter("bind:ImageUrl")
-    public static void loadImage(ImageView imageView, String urlImage){
+    public static void loadImage(ImageView imageView, String urlImage) {
         Glide.with(imageView.getContext())
                 .load(urlImage)
                 .apply(RequestOptions.circleCropTransform())
@@ -52,8 +52,8 @@ public class CustomBindingAdapter {
     @BindingAdapter({"bind:refreshState", "bind:onRefresh"})
     public static void configureSwipeRefreshLayout(SwipeRefreshLayout refreshLayout,
                                                    boolean isLoading,
-                                                   SwipeRefreshLayout.OnRefreshListener listener){
+                                                   SwipeRefreshLayout.OnRefreshListener listener) {
         refreshLayout.setOnRefreshListener(listener);
-        refreshLayout.post(()-> refreshLayout.setRefreshing(isLoading));
+        refreshLayout.post(() -> refreshLayout.setRefreshing(isLoading));
     }
 }

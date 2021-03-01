@@ -27,7 +27,7 @@ public class AppDelegate extends Application {
                 new ServiceModule());
     }
 
-    public static Scope getAppScope(){
+    public static Scope getAppScope() {
         return appScope;
     }
 }

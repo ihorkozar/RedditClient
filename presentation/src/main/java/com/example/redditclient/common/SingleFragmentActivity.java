@@ -23,7 +23,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
     protected abstract Fragment getFragment();
 
-    protected int getLayout(){
+    protected int getLayout() {
         return R.layout.ac_container;
     }
 

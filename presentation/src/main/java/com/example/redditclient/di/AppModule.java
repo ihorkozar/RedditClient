@@ -22,17 +22,17 @@ public class AppModule extends Module {
         bind(RedditDao.class).toInstance(provideRedditDao(provideDataBase()));
     }
 
-    AppDelegate provideAppDelegate(){
+    AppDelegate provideAppDelegate() {
         return appDelegate;
     }
 
-    RedditDatabase provideDataBase(){
+    RedditDatabase provideDataBase() {
         return Room.databaseBuilder(appDelegate, RedditDatabase.class, "reddit_database")
                 .fallbackToDestructiveMigration()
                 .build();
     }
 
-    RedditDao provideRedditDao(RedditDatabase redditDatabase){
+    RedditDao provideRedditDao(RedditDatabase redditDatabase) {
         return redditDatabase.getRedditDao();
     }
 }

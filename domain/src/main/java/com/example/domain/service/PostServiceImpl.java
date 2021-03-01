@@ -2,7 +2,6 @@ package com.example.domain.service;
 
 import com.example.domain.ApiUtils;
 import com.example.domain.model.Children;
-import com.example.domain.model.PostResponse;
 import com.example.domain.repository.PostRepository;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import javax.inject.Named;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
-public class PostServiceImpl implements PostService{
+public class PostServiceImpl implements PostService {
 
     @Inject
     @Named(PostRepository.SERVER)
@@ -36,7 +35,7 @@ public class PostServiceImpl implements PostService{
                 .onErrorReturn(throwable ->
                         ApiUtils.NETWORK_EXCEPTIONS.contains(throwable.getClass())
                                 ? postDataBaseRepository.getChildren().blockingGet()
-                                :null);
+                                : null);
     }
 
     @Override

@@ -6,13 +6,17 @@ import com.example.domain.model.Post;
 
 public class PostsListItemViewModel extends ViewModel {
 
-    private String author, publishedOn, imageUrl, numberOfComments, title;
+    private final String author;
+    private final String publishedOn;
+    private final String imageUrl;
+    private final String numberOfComments;
+    private final String title;
 
     public PostsListItemViewModel(Post item) {
         author = item.getAuthor();
-        publishedOn = String.valueOf((System.currentTimeMillis() / 1000 - item.getCreated_utc()) / 3600) + " " + "hours ago";
+        publishedOn = (System.currentTimeMillis() / 1000 - item.getCreated_utc()) / 3600 + " " + "hours ago";
         imageUrl = item.getThumbnail();
-        numberOfComments = String.valueOf(item.getNum_comments()) + "comments";
+        numberOfComments = item.getNum_comments() + "comments";
         title = item.getTitle();
     }
 
